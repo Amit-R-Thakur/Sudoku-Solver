@@ -1,0 +1,50 @@
+*
+{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+.main
+{
+    height: 100vh;
+    position: relative;
+}
+.sudokuSetup
+{
+    background-color: aqua;
+    position: absolute;
+    left:30%;
+    right: 30%;
+    top: 5%;
+    bottom: 5%;
+    padding:0.2%;
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+}
+.element
+{
+    border:1px solid black;
+    
+    
+}
+.element input
+{
+    width: 100%;
+    height: 100%;
+    text-align:center ;
+    font-size: 2.5rem;
+    border:none;
+}
+.borderleft
+{
+    border-left:5px solid black;
+    
+}
+.bordertop
+{
+    
+    border-top: 5px solid black;
+    
+}
