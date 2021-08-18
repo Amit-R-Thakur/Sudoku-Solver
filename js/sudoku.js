@@ -10,13 +10,26 @@ let sudoku=[
     [7, 0, 3 ,0, 1 ,8 ,0 ,0, 0]
     ];
 
+    let Gensdk=[
+    [0 ,0, 0, 2, 6, 0, 7, 0, 1],
+    [6, 8, 0, 0, 7, 0, 0, 9, 0],
+    [1,9 ,0 ,0, 0 ,4 ,5 ,0 ,0],
+    [8, 2, 0 ,1 ,0 ,0, 0, 4, 0],
+    [0, 0, 4 ,6 ,0 ,2, 9 ,0 ,0],
+    [0, 5, 0 ,0 ,0 ,3 ,0 ,2, 8],
+    [0, 0, 9 ,3, 0 ,0, 0, 7, 4],
+    [0, 4, 0 ,0 ,5 ,0 ,0 ,3 ,6],
+    [7, 0, 3 ,0, 1 ,8 ,0 ,0, 0]
+
+    ];
+
     console.log("                   ****************SUDOKU BEFORE SOLVE*************************");
     console.table(sudoku);
     console.log("                   ****************SUDOKU AFTER SOLVE*************************");
    
 
 
-    //Function for check in Row
+    //Function for check in Raw
 
     function  checkRow(board,Row,num)
     {
@@ -95,19 +108,82 @@ let sudoku=[
     }
 
 
+//Function for Startup Game Setup
+var mainDiv=document.createElement("div");
+    mainDiv.classList="main";
+    document.body.appendChild(mainDiv);
+    
+   
+function StartUp()
+{
+  let startMainDiv=document.createElement("div");
+  startMainDiv.classList.add("startup"); 
+  mainDiv.appendChild(startMainDiv);
+  let HeadingDiv=document.createElement("div");
+  let heading="<h1>Sudoku Game<h1>";
+  HeadingDiv.innerHTML=heading;
+  HeadingDiv.classList.add("heading");
+  startMainDiv.appendChild(HeadingDiv);
+  let GenrateDiv=document.createElement("div");
+  GenrateDiv.classList.add("GenrateMain");
+  startMainDiv.appendChild(GenrateDiv);
+  let genBtnDiv=document.createElement("div");
+  genBtnDiv.classList.add("genbtn");
+  let btn="<button id='GenSudoku'>Generate New Sudoku</button>";
+  genBtnDiv.innerHTML=btn;
+  let disSudokuDiv=document.createElement("div");
+  disSudokuDiv.classList.add("disSudoku");
+GenrateDiv.appendChild(genBtnDiv);
+GenrateDiv.appendChild(disSudokuDiv);
+for(let i=0; i<Gensdk.length;i++)
+{
+    for(let j=0;j<Gensdk.length;j++)
+    {
+        let div=document.createElement("div");
+        div.classList.add("MainRnDiv");
+        div.classList.add("notvisible");
+        let inp=document.createElement("input");
+        inp.value=Gensdk[i][j];
+        div.appendChild(inp);
+        disSudokuDiv.appendChild(div);
+
+    }
+}
+
+let PlayGameDiv=document.createElement("div");
+PlayGameDiv.classList.add("SgameDiv");
+
+document.querySelector("#GenSudoku").addEventListener("click",()=>{
+randomSudoku();
+let PlayBtn="<button>Play Game</button>";
+PlayGameDiv.innerHTML=PlayBtn;
+       })
+
+startMainDiv.appendChild(PlayGameDiv);
 
 
 
 
+
+  
+}
+StartUp();
+//Function for random print sudoku
+
+function randomSudoku()
+{
+    let all=document.querySelectorAll(".MainRnDiv");
+    all.forEach((elm)=>{elm.classList.remove("notvisible")});
+   Gensdk[0][0]=1;
+   console.table(Gensdk);
+}
 
 
 ///Function For setup Game 
 
 function setup()
 {
-    let mainDiv=document.createElement("div");
-    mainDiv.classList="main";
-    let set=document.createElement("div");
+    var set=document.createElement("div");
     set.classList="sudokuSetup";
     mainDiv.appendChild(set);
     let c=0;
@@ -118,6 +194,7 @@ function setup()
             c++;
             let newdiv=document.createElement("div");
             newdiv.classList=`element`;
+            newdiv.classList.add("notVisible");
             if(j==3||j==6)
             newdiv.classList.add(`borderleft`);
             if(i==3||i==6)
@@ -143,10 +220,10 @@ function setup()
         }
     
     }
-    document.body.appendChild(mainDiv);
+    
     let buttonDiv=document.createElement("div");
     let button=document.createElement("button");
-    buttonDiv.classList.add("btnDiv");
+    buttonDiv.classList.add("btnDiv notVisible");
     buttonDiv.appendChild(button);
     button.innerText="SOLVE";
     mainDiv.appendChild(buttonDiv);
@@ -169,6 +246,6 @@ function setup()
                     });
                     }
 }
-setup();
+// setup();
 
 
