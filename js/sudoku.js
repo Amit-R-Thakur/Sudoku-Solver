@@ -199,7 +199,17 @@ function setZero()
 function RanValueForSudoku()
 {
     setZero();
-   
+    for(let i=0;i<Gensdk.length;i++)
+    {
+        for(let j=0;j<Gensdk.length;j++)
+        {
+            let number=Math.floor(Math.random()*9)+1;
+            if(isValidNumber(Gensdk,i,j,number))
+            Gensdk[i][j]=number;
+            
+        }
+    }
+console.table(Gensdk);
 
 
 }
@@ -261,14 +271,12 @@ function setup()
                     sudoku.forEach((elem,inx)=>{
                         elem.forEach((correctElem)=>{
                             let inp=document.querySelector(`.elm${t}`);
-                      
                         if(correctElem==0)
                         correctElem="";
                         inp.value=correctElem;
                         t++;
 
                         })
-                        
                     });
                     }
 }
