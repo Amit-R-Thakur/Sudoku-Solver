@@ -72,6 +72,17 @@
     border-top: 5px solid black;
     
 }
+.borderleft1
+{
+    border-left:3px solid black;
+    
+}
+.bordertop1
+{
+    
+    border-top: 3px solid black;
+    
+}
 /*  CSS For Design StartUp Page*/
 .Startup
 {
@@ -134,7 +145,7 @@ background: linear-gradient(to right, #49a09d, #5f2c82); /* W3C, IE 10+/ Edge, F
 }
 .disSudoku
 {
-    background-color: blueviolet;
+    background-color: rgba(0, 0, 0, 0.342);
     display:grid;
     grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;

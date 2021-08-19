@@ -11,15 +11,15 @@ let sudoku=[
     ];
 
     let Gensdk=[
-    [0 ,0, 0, 2, 6, 0, 7, 0, 1],
-    [6, 8, 0, 0, 7, 0, 0, 9, 0],
-    [1,9 ,0 ,0, 0 ,4 ,5 ,0 ,0],
-    [8, 2, 0 ,1 ,0 ,0, 0, 4, 0],
-    [0, 0, 4 ,6 ,0 ,2, 9 ,0 ,0],
-    [0, 5, 0 ,0 ,0 ,3 ,0 ,2, 8],
-    [0, 0, 9 ,3, 0 ,0, 0, 7, 4],
-    [0, 4, 0 ,0 ,5 ,0 ,0 ,3 ,6],
-    [7, 0, 3 ,0, 1 ,8 ,0 ,0, 0]
+    [0 ,0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0,0, 0, 0, 0, 0],
+    [0,0 ,0 ,0, 0 ,0 ,0 ,0 ,0],
+    [0, 0, 0 ,0 ,0 ,0, 0, 0, 0],
+    [0, 0, 0 ,0 ,0 ,0, 0 ,0 ,0],
+    [0, 0, 0 ,0 ,0 ,0 ,0 ,0, 0],
+    [0, 0, 0 ,0, 0 ,0, 0, 0, 0],
+    [0, 0, 0 ,0 ,0 ,0 ,0 ,0 ,0],
+    [0, 0, 0 ,0, 0 ,0 ,0 ,0, 0]
 
     ];
 
@@ -143,7 +143,15 @@ for(let i=0; i<Gensdk.length;i++)
         div.classList.add("MainRnDiv");
         div.classList.add("notvisible");
         let inp=document.createElement("input");
+        if(j==3||j==6)
+        div.classList.add(`borderleft1`);
+        if(i==3||i==6)
+        div.classList.add(`bordertop1`);
+        
+        if(Gensdk[i][j]!=0)
         inp.value=Gensdk[i][j];
+        inp.setAttribute("readonly","");
+
         div.appendChild(inp);
         disSudokuDiv.appendChild(div);
 
@@ -155,6 +163,7 @@ PlayGameDiv.classList.add("SgameDiv");
 
 document.querySelector("#GenSudoku").addEventListener("click",()=>{
 randomSudoku();
+RanValueForSudoku();
 let PlayBtn="<button>Play Game</button>";
 PlayGameDiv.innerHTML=PlayBtn;
        })
@@ -174,8 +183,25 @@ function randomSudoku()
 {
     let all=document.querySelectorAll(".MainRnDiv");
     all.forEach((elm)=>{elm.classList.remove("notvisible")});
-   Gensdk[0][0]=1;
-   console.table(Gensdk);
+}
+//Function for set value 0 of Random Sudoku
+function setZero()
+{
+    for(i=0;i<Gensdk.length;i++)
+    {
+        for(let j=0;j<Gensdk.length;j++)
+        {
+            Gensdk[i][j]=0;
+        }
+    }
+}
+//Function for Random Value For Sudoku.........
+function RanValueForSudoku()
+{
+    setZero();
+   
+
+
 }
 
 
