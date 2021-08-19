@@ -143,6 +143,7 @@ for(let i=0; i<Gensdk.length;i++)
         div.classList.add("MainRnDiv");
         div.classList.add("notvisible");
         let inp=document.createElement("input");
+        inp.classList.add("ranInp");
         if(j==3||j==6)
         div.classList.add(`borderleft1`);
         if(i==3||i==6)
@@ -150,6 +151,7 @@ for(let i=0; i<Gensdk.length;i++)
         
         if(Gensdk[i][j]!=0)
         inp.value=Gensdk[i][j];
+        
         inp.setAttribute("readonly","");
 
         div.appendChild(inp);
@@ -164,6 +166,7 @@ PlayGameDiv.classList.add("SgameDiv");
 document.querySelector("#GenSudoku").addEventListener("click",()=>{
 randomSudoku();
 RanValueForSudoku();
+
 let PlayBtn="<button>Play Game</button>";
 PlayGameDiv.innerHTML=PlayBtn;
        })
@@ -199,22 +202,41 @@ function setZero()
 function RanValueForSudoku()
 {
     setZero();
-    for(let i=0;i<Gensdk.length;i++)
+    for(let i=0;i<20;i++)
     {
-        for(let j=0;j<Gensdk.length;j++)
-        {
-            let number=Math.floor(Math.random()*9)+1;
-            if(isValidNumber(Gensdk,i,j,number))
-            {
-            Gensdk[i][j]=number;
-            }
-            
-        }
-    }
-console.table(Gensdk);
-solveBoard(Gensdk);
-console.table(Gensdk);
+        let row=Math.floor(Math.random()*9);
+        let col=Math.floor(Math.random()*9);
+        let num=Math.floor(Math.random()*9)+1;
+        console.log(row+","+col+","+num);
+       if(isValidNumber(Gensdk,row,col,num))
+       {
+           Gensdk[row][col]=num;
+       }
+       else
+       {
+           continue;
+       }
 
+    }
+    setValue();
+
+}
+//Function For set Value to Sudoku
+function setValue()
+{
+
+    let inp=document.querySelectorAll(".ranInp");
+    let n=0;
+    Gensdk.forEach((elm)=>{
+        elm.forEach((crnVal)=>{
+            if(crnVal!=0)
+            inp[n].value=crnVal;
+            else
+            inp[n].value="";
+            n++;
+        });
+
+    });
 }
 
 
