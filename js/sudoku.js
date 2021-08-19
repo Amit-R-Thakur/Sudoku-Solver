@@ -205,12 +205,15 @@ function RanValueForSudoku()
         {
             let number=Math.floor(Math.random()*9)+1;
             if(isValidNumber(Gensdk,i,j,number))
+            {
             Gensdk[i][j]=number;
+            }
             
         }
     }
 console.table(Gensdk);
-
+solveBoard(Gensdk);
+console.table(Gensdk);
 
 }
 
