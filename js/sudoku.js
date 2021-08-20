@@ -1,14 +1,3 @@
-let sudoku=[
-    [0 ,0, 0, 2, 6, 0, 7, 0, 1],
-    [6, 8, 0, 0, 7, 0, 0, 9, 0],
-    [1,9 ,0 ,0, 0 ,4 ,5 ,0 ,0],
-    [8, 2, 0 ,1 ,0 ,0, 0, 4, 0],
-    [0, 0, 4 ,6 ,0 ,2, 9 ,0 ,0],
-    [0, 5, 0 ,0 ,0 ,3 ,0 ,2, 8],
-    [0, 0, 9 ,3, 0 ,0, 0, 7, 4],
-    [0, 4, 0 ,0 ,5 ,0 ,0 ,3 ,6],
-    [7, 0, 3 ,0, 1 ,8 ,0 ,0, 0]
-    ];
 
     let Gensdk=[
     [0 ,0, 0, 0, 0, 0, 0, 0, 0],
@@ -22,13 +11,6 @@ let sudoku=[
     [0, 0, 0 ,0, 0 ,0 ,0 ,0, 0]
 
     ];
-
-    console.log("                   ****************SUDOKU BEFORE SOLVE*************************");
-    console.table(sudoku);
-    console.log("                   ****************SUDOKU AFTER SOLVE*************************");
-   
-
-
     //Function for check in Raw
 
     function  checkRow(board,Row,num)
@@ -167,17 +149,14 @@ document.querySelector("#GenSudoku").addEventListener("click",()=>{
 randomSudoku();
 RanValueForSudoku();
 
-let PlayBtn="<button>Play Game</button>";
+let PlayBtn="<button id='play'>Play Game</button>";
 PlayGameDiv.innerHTML=PlayBtn;
+document.querySelector("#play").addEventListener("click",()=>{
+    setup(Gensdk);
+})
        })
 
 startMainDiv.appendChild(PlayGameDiv);
-
-
-
-
-
-  
 }
 StartUp();
 //Function for random print sudoku
@@ -202,7 +181,7 @@ function setZero()
 function RanValueForSudoku()
 {
     setZero();
-    for(let i=0;i<20;i++)
+    for(let i=0;i<30;i++)
     {
         let row=Math.floor(Math.random()*9);
         let col=Math.floor(Math.random()*9);
@@ -237,15 +216,33 @@ function setValue()
 
     });
 }
+//Function For set Display none by class Name
+function SetNone(classs)
+{
+    let elm=document.querySelector(`.${classs}`);
+    elm.classList.toggle("notVisible");
+}
 
+//Function For set Display none by Id Name
+function SetNoneId(idd)
+{
+    let elm=document.querySelector(`#${idd}`);
+    elm.classList.toggle("notVisible");
+}
 
 ///Function For setup Game 
 
-function setup()
+function setup(sudoku)
 {
+   SetNone("SgameDiv");//SgameDiv
+   SetNoneId("Play");
+    SetNone("GenrateMain");
     var set=document.createElement("div");
     set.classList="sudokuSetup";
-    mainDiv.appendChild(set);
+    let startMainDiv=document.querySelector(".startup");
+    // set.style.background="green";
+    
+    startMainDiv.appendChild(set);
     let c=0;
    for(let i=0;i<sudoku.length;i++)
    {
@@ -254,7 +251,7 @@ function setup()
             c++;
             let newdiv=document.createElement("div");
             newdiv.classList=`element`;
-            newdiv.classList.add("notVisible");
+           // newdiv.classList.add("notVisible");
             if(j==3||j==6)
             newdiv.classList.add(`borderleft`);
             if(i==3||i==6)
@@ -280,14 +277,22 @@ function setup()
         }
     
     }
-    
-    let buttonDiv=document.createElement("div");
-    let button=document.createElement("button");
-    buttonDiv.classList.add("btnDiv notVisible");
-    buttonDiv.appendChild(button);
-    button.innerText="SOLVE";
-    mainDiv.appendChild(buttonDiv);
 
+    let buttonDiv=document.createElement("div");
+    buttonDiv.classList.add("divhome");
+    startMainDiv.appendChild(buttonDiv);
+    startMainDiv.classList.add("secondClass");
+    buttonDiv.style.display="grid";
+    buttonDiv.style.gridTemplateColumns="1fr 1fr";
+    // console.log(buttonDiv);
+    let button=document.createElement("button");
+    let SecondButton=document.createElement("button");
+    SecondButton.innerText="Home";
+    button.innerText="Auto SOLVE";
+    buttonDiv.appendChild(SecondButton);
+    buttonDiv.appendChild(button);
+    
+    SecondButton.addEventListener("click",()=>{window.location.reload()});
     button.onclick=()=>{
                    solveBoard(sudoku);
                    console.table(sudoku);
