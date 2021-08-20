@@ -207,7 +207,6 @@ function RanValueForSudoku()
         let row=Math.floor(Math.random()*9);
         let col=Math.floor(Math.random()*9);
         let num=Math.floor(Math.random()*9)+1;
-        console.log(row+","+col+","+num);
        if(isValidNumber(Gensdk,row,col,num))
        {
            Gensdk[row][col]=num;
