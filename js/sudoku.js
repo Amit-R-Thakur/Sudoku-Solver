@@ -181,7 +181,7 @@ function setZero()
 function RanValueForSudoku()
 {
     setZero();
-    for(let i=0;i<30;i++)
+    for(let i=0;i<20;i++)
     {
         let row=Math.floor(Math.random()*9);
         let col=Math.floor(Math.random()*9);
@@ -257,6 +257,17 @@ function setup(sudoku)
             if(i==3||i==6)
             newdiv.classList.add(`bordertop`);
            let inp=document.createElement("input");
+           inp.addEventListener("input",()=>{
+               if(isValidNumber(sudoku,i,j,inp.value))
+               {
+                   console.log("Valid");
+               }
+               else
+               {
+                console.log("Invalid");
+               }
+
+                    })
            inp.classList=`elm${c}`;
            if(sudoku[i][j]!=0)
            {
