@@ -92,8 +92,14 @@
 background: -webkit-linear-gradient(to right, #cbad6d, #d53369);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #cbad6d, #d53369); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
  display: grid;
+
  grid-template-rows:15% 35% 1fr ;
 
+}
+button
+{
+    background-color: #AF33FF;
+    color: white;
 }
 .heading
 {
@@ -101,11 +107,9 @@ background: linear-gradient(to right, #cbad6d, #d53369); /* W3C, IE 10+/ Edge, F
     border-top-right-radius: 2rem;
     border-top-left-radius: 2rem;
     border-bottom: 7px solid red;
-    background: #5f2c82;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #49a09d, #5f2c82);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #49a09d, #5f2c82); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-    
+   
+background: rgb(63,94,251);
+background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(90,223,219,1) 100%);
 }
 .heading h1
 {
@@ -127,16 +131,20 @@ background: linear-gradient(to right, #49a09d, #5f2c82); /* W3C, IE 10+/ Edge, F
 .genbtn
 {
     text-align: center;
+    display:grid;
+    grid-template-rows: 1fr 1fr;
+    padding: 2%;
 }
 .genbtn button
 {
-    margin-top: 30%;
+    margin-top: 12%;
     padding:0.7rem;
     font-size: 1rem;
     font-weight: bold;
     border-radius: 3rem;
     border: none;
     cursor: pointer;
+    width: 95%;
 }
 .disSudoku
 {
@@ -177,7 +185,7 @@ background: linear-gradient(to right, #49a09d, #5f2c82); /* W3C, IE 10+/ Edge, F
 .secondClass
 {
     display: grid;
-    grid-template-rows:15% 1fr 15%;
+    grid-template-rows:15% 1fr 13%;
 }
 .divhome
 {

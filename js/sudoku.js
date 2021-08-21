@@ -94,7 +94,22 @@
 var mainDiv=document.createElement("div");
     mainDiv.classList="main";
     document.body.appendChild(mainDiv);
-    
+    //function For Print Value of Create Sudoku......
+    function PCrValue()
+      {
+    let inp=document.querySelectorAll(".ranInp");
+    let p=0;
+    for(i=0;i<Gensdk.length;i++)
+    {
+        for(j=0;j<Gensdk.length;j++)
+        {
+            Gensdk[i][j]=Number(inp[p].value);
+            p++;
+
+        }
+
+    }
+ }
    
 function StartUp()
 {
@@ -102,7 +117,7 @@ function StartUp()
   startMainDiv.classList.add("startup"); 
   mainDiv.appendChild(startMainDiv);
   let HeadingDiv=document.createElement("div");
-  let heading="<h1>Sudoku Game<h1>";
+  let heading="<h1>Sudoku Solver<h1>";
   HeadingDiv.innerHTML=heading;
   HeadingDiv.classList.add("heading");
   startMainDiv.appendChild(HeadingDiv);
@@ -110,13 +125,40 @@ function StartUp()
   GenrateDiv.classList.add("GenrateMain");
   startMainDiv.appendChild(GenrateDiv);
   let genBtnDiv=document.createElement("div");
+  GenrateDiv.appendChild(genBtnDiv);
   genBtnDiv.classList.add("genbtn");
+  let fbtndiv=document.createElement("div");
+  let sbtndiv=document.createElement("div");
   let btn="<button id='GenSudoku'>Generate New Sudoku</button>";
-  genBtnDiv.innerHTML=btn;
+  let sbtn="<button id='CrSudoku'>Create Own Puzzle</button>";
   let disSudokuDiv=document.createElement("div");
+  GenrateDiv.appendChild(disSudokuDiv);
   disSudokuDiv.classList.add("disSudoku");
-GenrateDiv.appendChild(genBtnDiv);
-GenrateDiv.appendChild(disSudokuDiv);
+  genBtnDiv.appendChild(fbtndiv);
+  genBtnDiv.appendChild(sbtndiv);
+  fbtndiv.innerHTML=btn;
+  sbtndiv.innerHTML=sbtn;
+  document.querySelector("#CrSudoku").classList.add("notvisible");
+//coding for Create New Sudoku
+
+document.querySelector("#CrSudoku").addEventListener("click",()=>{
+    let row=0,col=0;
+    setZero();
+    setValue();
+    let inp=document.querySelectorAll(".ranInp");
+    inp.forEach((elm,inx)=>{
+        elm.removeAttribute("readonly");
+        
+    });
+
+
+});
+
+
+
+
+
+//******************************
 for(let i=0; i<Gensdk.length;i++)
 {
     for(let j=0;j<Gensdk.length;j++)
@@ -146,13 +188,23 @@ let PlayGameDiv=document.createElement("div");
 PlayGameDiv.classList.add("SgameDiv");
 
 document.querySelector("#GenSudoku").addEventListener("click",()=>{
+    
+    document.querySelector("#GenSudoku").innerText="Generate Random Puzzle";   
+document.querySelector("#CrSudoku").classList.remove("notvisible");
 randomSudoku();
+let inp=document.querySelectorAll(".ranInp");
+    inp.forEach((elm,inx)=>{
+        elm.setAttribute("readonly","");
+        
+    });
 RanValueForSudoku();
 
-let PlayBtn="<button id='play'>Play Game</button>";
+let PlayBtn="<button id='play'>Solve Sudoku</button>";
 PlayGameDiv.innerHTML=PlayBtn;
 document.querySelector("#play").addEventListener("click",()=>{
+    PCrValue();
     setup(Gensdk);
+    
 })
        })
 
@@ -258,13 +310,10 @@ function setup(sudoku)
             newdiv.classList.add(`bordertop`);
            let inp=document.createElement("input");
            inp.addEventListener("input",()=>{
-               if(isValidNumber(sudoku,i,j,inp.value))
+               if(!isValidNumber(sudoku,i,j,inp.value)&&inp.value!=0)
                {
-                   console.log("Valid");
-               }
-               else
-               {
-                console.log("Invalid");
+                   console.log("invalid");
+                   return;
                }
 
                     })
